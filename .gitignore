@@ -1,0 +1,12 @@
+dist/
+.preview/
+.DS_Store
+node_modules/
+.vercel/
+.wrangler/
+
+# Local hosting setup, DNS verification data, and preview captures are not site source.
+.openai/
+/aiqaprobe-dns-import.csv
+/aiqaprobe-www-dns-import.csv
+/aiqaprobe-live.png

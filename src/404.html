@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 | AIQA 研究站</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f2f0e8;
+        --ink: #10141f;
+        --blue: #2148ff;
+        --orange: #ff5a2c;
+      }
+      * { box-sizing: border-box; }
+      body {
+        display: grid;
+        min-height: 100vh;
+        margin: 0;
+        padding: 28px;
+        place-items: center;
+        background:
+          radial-gradient(circle at 85% 10%, rgba(33, 72, 255, 0.2), transparent 32rem),
+          var(--paper);
+        color: var(--ink);
+        font-family: "Avenir Next", "PingFang SC", sans-serif;
+      }
+      main {
+        width: min(100%, 860px);
+        border: 2px solid var(--ink);
+        background: #fbfaf5;
+        box-shadow: 14px 14px 0 var(--orange);
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 18px;
+        background: var(--ink);
+        color: #fff;
+        font-family: "SFMono-Regular", Menlo, monospace;
+        font-size: 10px;
+      }
+      section { padding: clamp(30px, 7vw, 70px); }
+      strong {
+        display: block;
+        color: var(--blue);
+        font-family: "Avenir Next Condensed", "DIN Condensed", sans-serif;
+        font-size: clamp(7rem, 26vw, 15rem);
+        font-weight: 800;
+        letter-spacing: -0.08em;
+        line-height: 0.75;
+      }
+      h1 {
+        margin: 38px 0 12px;
+        font-size: clamp(1.6rem, 4vw, 2.5rem);
+      }
+      p {
+        max-width: 540px;
+        margin: 0 0 28px;
+        color: #60636b;
+        line-height: 1.8;
+      }
+      a {
+        display: inline-block;
+        padding: 11px 15px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 12px;
+        text-decoration: none;
+      }
+      a:hover { background: var(--orange); color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header><span>AIQA / 404</span><span>PAGE NOT FOUND</span></header>
+      <section>
+        <strong>404</strong>
+        <h1>这条路径没有留下证据。</h1>
+        <p>页面可能已经移动，或者这个地址还没有被写进研究站。</p>
+        <a href="/">回到 AIQA 研究站</a>
+      </section>
+    </main>
+  </body>
+</html>

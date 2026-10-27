@@ -1,0 +1,17 @@
+{
+  "name": "AIQA 研究站 | AIQA Probe",
+  "short_name": "AIQA Probe",
+  "description": "一个专注 AI 质量工程的研究小站。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2f6ff",
+  "theme_color": "#1947d8",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
