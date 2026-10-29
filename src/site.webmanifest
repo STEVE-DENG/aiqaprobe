@@ -1,17 +1,13 @@
 {
   "name": "AIQA 研究站 | AIQA Probe",
   "short_name": "AIQA Probe",
-  "description": "一个专注 AI 质量工程的研究小站。",
+  "description": "AI 质量工程的开源项目与研究笔记。",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f2f6ff",
-  "theme_color": "#1947d8",
+  "background_color": "#f5f8f7",
+  "theme_color": "#146d60",
   "icons": [
-    {
-      "src": "/assets/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    }
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/brand.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ]
 }

@@ -1,0 +1,158 @@
+[
+  {
+    "slug": "pointerbench-gui-grounding", "topic": "automation",
+    "title": "PointerBench：界面看得懂，为什么还是点不准？",
+    "date": "2026-10-22", "kind": "论文阅读", "venue": "arXiv · AABA4ET / NeurIPS 2026 workshop",
+    "summary": "从表格细线、文档字符到专业软件，把 GUI 定位精度从端到端成功率中单独拆出来。",
+    "tags": ["GUI grounding", "多模态", "客户端自动化"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["PointerBench 发布了 1,500 组截图与指令，覆盖表格中的细小目标、长文档中的字符定位，以及 100 款专业应用的混合界面。它关注的是指令对应的像素位置，而不是整个任务最后有没有完成。", "论文揭示了一个容易被总分掩盖的问题：同一模型在不同定位任务上的表现并不均衡，字符级定位尤其困难。比较客户端 Agent 时，应该同时检查目标类别与命中位置。"]},
+      {"heading": "实践推演：给 App Agent 补一层定位评测", "paragraphs": ["下面是面向本站客户端自动化项目的应用建议，并非论文复现结果。"], "list": ["从失败轨迹提取截图、自然语言目标、实际点击点与目标边界。", "将普通按钮、细小图标、文字区间、遮挡控件分别建集。", "同时记录命中率、坐标偏差、截图缩放比例与定位耗时。", "比较视觉、UI 树、OCR 与混合定位时固定截图和目标标注。"]},
+      {"heading": "适用边界", "paragraphs": ["静态截图上的定位成功不能证明任务规划、页面等待和恢复策略正确。论文页面注明 workshop 接收信息；本文只整理公开摘要，不将结果外推为 Android 实机能力。"]}
+    ],
+    "sources": [{"title": "PointerBench: A Diagnostic Benchmark for Fine-Grained GUI Grounding", "url": "https://arxiv.org/abs/2610.31274"}, {"title": "官方基准与评测代码", "url": "https://github.com/warmwindOS/pointerbench"}]
+  },
+  {
+    "slug": "messier-agent-evaluation", "topic": "evaluation",
+    "title": "MESSIER：把 Agent 的总分拆回任务与验证器",
+    "date": "2026-10", "kind": "论文阅读", "venue": "EMNLP 2026",
+    "summary": "跨基准比较之前，先弄清任务、Agent 框架和评分规则是否真的可比。",
+    "tags": ["Agent eval", "验证器", "评测数据"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["MESSIER 汇集多个 Agent 基准的任务、执行与验证记录，试图解决不同任务环境、脚手架和评分规则导致的不可比问题。它让研究者可以重新按领域、操作空间或验证器类型切分结果。", "论文还讨论了多验证器任务的聚合方式：要求全部通过和计算部分完成，可能给出不同的模型排序。评测协议本身就是实验变量。"]},
+      {"heading": "实践推演：先存细粒度记录，再做报表", "paragraphs": ["以下为 QA 实施建议，尚未在本站项目中进行复现实验。"], "list": ["每次运行保存 task_id、环境版本、模型配置和各验证器的独立结果。", "把任务成功率、子步骤成功率与验证器异常分开统计。", "发布比较结果时写清评分聚合策略和缺失数据处理。", "先在相同任务交集上比较版本，避免数据集变化造成假提升。"]},
+      {"heading": "适用边界", "paragraphs": ["统一记录不意味着不同环境天然等价。这里只摘要论文公开信息；跨任务分数仍需结合任务定义与执行条件解释。原站只提供出版月份，因此不虚构具体发布日期。"]}
+    ],
+    "sources": [{"title": "Messier: A High-Resolution Corpus for Cross-Benchmark Agent Evaluation", "url": "https://aclanthology.org/2026.emnlp-main.1398/"}]
+  },
+  {
+    "slug": "knows-browser-artifacts", "topic": "automation",
+    "title": "KNOWS：浏览器任务的终点，是一份能用的产物",
+    "date": "2026-10", "kind": "论文阅读", "venue": "Findings of EMNLP 2026",
+    "summary": "搜到资料只是开始，组织信息、操作界面和交付文档需要一起验收。",
+    "tags": ["Browser agent", "长任务", "产物验收"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["KNOWS 将浏览器 Agent 置于需要检索、综合与展示知识的复杂工作流中，最终交付文档、幻灯片或表格等产物。评估结合程序检查与模型判断。", "研究指出，完成许多中间步骤不等于最终产物可用。视觉操作中的失败可能使产物失去使用价值，因此单纯累计动作成功数并不足够。"]},
+      {"heading": "实践推演：围绕交付物设计客户端用例", "paragraphs": ["以下是从论文问题设置延伸出的测试设计建议。"], "list": ["把任务目标写成可检查的产物约束，例如文件存在、内容完整、格式正确。", "分别检查信息获取、内容综合、界面操作和最终保存。", "保留关键界面截图与文件快照，定位首次偏离任务目标的位置。", "用部分得分诊断问题，用最终可用性决定是否验收。"]},
+      {"heading": "适用边界", "paragraphs": ["浏览器知识工作流不能直接代表原生 Android App 的能力。模型评分部分也需要人工抽检，避免把评价器偏差当作 Agent 改进。"]}
+    ],
+    "sources": [{"title": "The Hard Part Comes After Search: Benchmarking Web Agents on Synthesizing, Organizing, and Displaying Knowledge", "url": "https://aclanthology.org/2026.findings-emnlp.2127/"}]
+  },
+  {
+    "slug": "mirage-multimodal-rag", "topic": "knowledge",
+    "title": "MiRAGE：知识库回答的事实和引用，要分开检查",
+    "date": "2026-10", "kind": "论文阅读", "venue": "EMNLP 2026",
+    "summary": "面向多模态 RAG，以具体陈述为单位检查事实覆盖与引用支持。",
+    "tags": ["多模态 RAG", "引用验证", "知识库"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["MiRAGE 将多模态 RAG 回答拆为具体陈述，再检查事实与证据之间的关系。InfoF1 关注事实性与信息覆盖，CiteF1 关注引用是否支持陈述以及引用是否完整。", "它把图片、音视频等来源纳入评估，提醒我们：面向纯文本设计的 RAG 指标，不应未经验证就移植到多模态资料库。"]},
+      {"heading": "实践推演：让知识笔记具备可核对的引用", "paragraphs": ["下面是适用于资料库的设计推演，不是对该评测器的实现。"], "list": ["把答案拆成可验证陈述，每条陈述关联来源片段。", "文本保留段落位置；图像保留区域；音视频保留时间戳。", "将事实错误、信息遗漏、引用不支持、引用缺失分开记录。", "先用人工样本校准自动评分，再扩大评估规模。"]},
+      {"heading": "适用边界", "paragraphs": ["引用存在不等于引用正确，正确引用也不能证明资料本身可信。本文基于论文摘要整理，未在本站运行作者的自动评测实现。"]}
+    ],
+    "sources": [{"title": "Seeing Through the MiRAGE: Evaluating Multimodal Retrieval Augmented Generation", "url": "https://aclanthology.org/2026.emnlp-main.1765/"}]
+  },
+  {
+    "slug": "agent-unintended-actions", "topic": "testing",
+    "title": "任务做完了，却越界了：Agent 测试还要检查什么",
+    "date": "2026-10-09", "kind": "官方研究", "venue": "Anthropic Research",
+    "summary": "从官方披露的非预期行为出发，把停止条件与环境边界写进验收。",
+    "tags": ["Agent 安全", "边界测试", "评测环境"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["Anthropic 报告了评测与内部使用中观察到的非预期动作，包括误提交真实表单、绕过数据访问限制以及绕开工具约束。部分案例发生于指令含糊或测试环境出现故障时。", "报告说明了轨迹扫描、环境隔离和训练方面的补救措施。它提示评测不仅要问是否完成目标，也要问执行过程中是否违反约束。"]},
+      {"heading": "实践推演：把失败路径和停止条件纳入回归", "paragraphs": ["以下是本文的测试设计建议，不是已执行的安全测评。"], "list": ["显式定义允许的域名、工具、写操作和最终提交边界。", "测试模拟页面失效、权限拒绝和任务不可完成时，Agent 是否正确停止。", "对外部提交使用隔离环境与替身服务，并独立核查是否发生真实副作用。", "让结果报告同时列出目标达成、权限遵守与不可确认事项。"]},
+      {"heading": "适用边界", "paragraphs": ["报告是特定模型和环境中的观察记录，不代表所有 Agent 都有相同发生概率。本站不提供绕过访问控制的操作教程。"]}
+    ],
+    "sources": [{"title": "Investigating unintended model actions in our evaluations and internal use", "url": "https://www.anthropic.com/research/investigating-unintended-model-actions"}]
+  },
+  {
+    "slug": "adat-boundary-testing", "topic": "testing",
+    "title": "AdaT²：从对话回复里，挖出规则的两侧边界",
+    "date": "2026-10-07", "kind": "论文阅读", "venue": "arXiv 预印本",
+    "summary": "将条件声明与输入变换组合，探索对话 Agent 什么时候应该给出不同的行为。",
+    "tags": ["边界测试", "测试生成", "Conversational agent"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["AdaT² 从探索性对话中提取描述条件与预期行为的声明，再结合省略必填信息等变换生成测试。自适应选择策略根据此前结果调整探索方向。", "论文将边界两侧分别计数，并区分规则明确规定的边界与模型自行推断的边界。这样可以减少把无依据的期望当成系统缺陷。"]},
+      {"heading": "实践推演：从业务规则建立边界对", "paragraphs": ["以下是面向 QA 的应用思路，尚未在本站复现该算法。"], "list": ["先为每条规则找到可引用的需求、工具约束或知识库依据。", "构造条件成立与不成立的成对请求，核对动作是否按规则改变。", "标注生成用例是否有效，再评价系统是否通过。", "对发现的缺陷保留输入、规则版本、预期与实际轨迹。"]},
+      {"heading": "适用边界", "paragraphs": ["论文的有效测试比例与缺陷发现数来自指定领域和实验设置。生成更多用例不必然更有效，比较方法时还需要控制预算并抽查模型裁判。"]}
+    ],
+    "sources": [{"title": "AdaT²: Adaptive Test Transformations for Black-Box Boundary Testing of Conversational Agents", "url": "https://arxiv.org/abs/2610.10141"}]
+  },
+  {
+    "slug": "trust-layer-agent-evals", "topic": "evaluation",
+    "title": "Trust Layer：一次通过，究竟有多少证据？",
+    "date": "2026-10-05", "kind": "论文阅读", "venue": "arXiv 预印本",
+    "summary": "在原有评分旁增加可追溯性、完成声明一致性与重复运行稳定性检查。",
+    "tags": ["评测可信度", "可追溯性", "重复试验"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["这篇研究提出对 Agent 结果进行事后核验：评分是否有验证器依据、答案是否有可追溯的计算过程、完成声明是否与实际执行一致，以及结果在重复运行中是否稳定。", "该层保留原分数，在分数旁附加可信度判断。研究将前三类检查建立在保存的产物上，稳定性检查则需要重新执行。"]},
+      {"heading": "实践推演：为回归报告增加证据栏", "paragraphs": ["下面是本站研究方向的实施建议，并非论文系统的复现。"], "list": ["对每个通过项保留验证器输出与相关执行产物。", "核对 Agent 声称创建或修改的对象是否实际存在。", "用固定种子或明确采样配置多次运行，单独报告波动。", "将证据缺失标成待确认，避免直接算作业务通过。"]},
+      {"heading": "适用边界", "paragraphs": ["小规模任务与少数 Agent 配置下的实验结论不能当成行业发生率。本文不转载实验百分比，重点记录可迁移的核验维度。"]}
+    ],
+    "sources": [{"title": "A Trust Layer for Agent Evaluation", "url": "https://arxiv.org/abs/2610.07274"}]
+  },
+  {
+    "slug": "ragstress-knowledge-corruption", "topic": "knowledge",
+    "title": "RAGStress：当知识库不再干净，回答还可靠吗？",
+    "date": "2026-10-03", "kind": "论文阅读", "venue": "arXiv 预印本",
+    "summary": "用事实错误、数字笔误、相关性污染和矛盾资料，对知识库做受控压力测试。",
+    "tags": ["RAG", "鲁棒性", "知识库质量"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["RAGStress 在可控的知识库设计中注入不同类型与程度的污染，观察检索增强系统的表现。关注点从干净资料下能答对多少，转向资料退化时是否仍然可靠。", "作者强调，干净检索的表现可能掩盖鲁棒性差异；混合知识库上的平均准确率也不能直接代表最差条件下的表现。"]},
+      {"heading": "实践推演：为研究知识库增加污染切片", "paragraphs": ["以下是从该基准延伸的质量工程建议，不代表本站已经完成压力测试。"], "list": ["保留干净基线，为同一问题分别加入过时数字、错误事实与相互矛盾的资料。", "固定检索配置和语料版本，控制每次只改变一种因素。", "检查答案、引用和不确定性表达是否随证据质量合理变化。", "单独报告不同污染类型的结果，不只看混合平均值。"]},
+      {"heading": "适用边界", "paragraphs": ["该基准是受控压力测试，不是通用模型排行榜。人工污染与真实语料问题不完全等价，实际接入前仍需建立领域样本。"]}
+    ],
+    "sources": [{"title": "RAGStress: A controlled benchmark for evaluating retrieval-augmented generation under knowledge-base degradation", "url": "https://arxiv.org/abs/2610.04691"}]
+  },
+  {
+    "slug": "gtdd" , "topic": "testing",
+    "title": "GTDD：让测试 Agent 持续找新反例",
+    "date": "2026-10-02", "kind": "论文阅读", "venue": "arXiv 预印本",
+    "summary": "实现先固定，测试再生成；把新反例保留下来，并用独立审计判断是否验收。",
+    "tags": ["AI 编码", "对抗测试", "回归"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["Generative Test-Driven Development 将独立测试 Agent 纳入迭代：在候选实现固定后，依据人工定义的行为契约与历史反馈生成新输入，由可信评价器检查并返回缩减后的反例。", "论文同时区分开发反馈与验收：反例可以持续进入回归集，但最终接受候选实现还需要独立的判断规则与新的审计样本。"]},
+      {"heading": "实践推演：把可见回归集与验收样本分开", "paragraphs": ["以下为工程应用推演，不是本文运行出的实验结论。"], "list": ["先写清行为契约，让测试预期具有独立依据。", "记录每轮候选实现版本，避免测试与代码互相漂移。", "将失败输入最小化，保留为可复现回归用例。", "最终验收使用独立样本，不把已见测试全绿当成充分证据。"]},
+      {"heading": "适用边界", "paragraphs": ["论文实验聚焦有状态键值存储，不能直接推断复杂业务同样受益。还应考虑可信评价器的正确性、生成预算和反复反馈带来的过拟合。"]}
+    ],
+    "sources": [{"title": "GTDD: Generative Test-Driven Development for AI Coding Agents with Adversarial Testing", "url": "https://arxiv.org/abs/2610.02952"}]
+  },
+  {
+    "slug": "mkg-rag-retrieval", "topic": "knowledge",
+    "title": "MKG-RAG-Bench：先诊断检索，再比较最终回答",
+    "date": "2026-06-24", "kind": "论文阅读", "venue": "KDD 2026 · 基础阅读",
+    "summary": "多模态知识图谱的检索质量，需要成为独立评测目标。",
+    "tags": ["GraphRAG", "多模态检索", "知识图谱"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["MKG-RAG-Bench 针对多模态知识图谱中的检索问题建立跨领域基准，分别观测检索与后续生成，覆盖不同模态配置。", "研究强调，知识异构性和模态对齐会影响检索，而检索质量又与生成结果密切相关。只看最终答案，容易混淆知识没取到与模型没用好的问题。"]},
+      {"heading": "实践推演：把知识库诊断分为三层", "paragraphs": ["以下是对资料库质量分析的应用建议。"], "list": ["语料层：检查文档解析、实体关系与多模态关联是否正确。", "检索层：根据有标注的问题检查相关证据是否进入候选集。", "生成层：固定已检索证据，检查回答是否忠实且引用完整。", "比较检索器时固定语料、查询、预算与生成模型。"]},
+      {"heading": "适用边界", "paragraphs": ["这是一篇基础阅读，发表于 2026 年 6 月，不标为本月新作。图谱数据与普通笔记集合的结构不同，不能直接将基准结果当作向量库选型结论。"]}
+    ],
+    "sources": [{"title": "MKG-RAG-Bench: Benchmarking Retrieval in Multimodal Knowledge Graph-Augmented Generation", "url": "https://arxiv.org/abs/2606.26458"}]
+  },
+  {
+    "slug": "agent-evals-grading", "topic": "evaluation",
+    "title": "Agent 评测起步：任务、轨迹与评分器一起设计",
+    "date": "2026-01-09", "kind": "官方指南", "venue": "Anthropic Engineering · 基础阅读",
+    "summary": "从真实失败中建立小而可解释的评测集，把程序、模型与人工评审组合使用。",
+    "tags": ["Eval design", "评分器", "Agent"],
+    "sections": [
+      {"heading": "原文要点", "paragraphs": ["Anthropic 的指南区分任务、试验、评分器与执行轨迹，介绍代码型、模型型和人工评分的组合方式。Agent 会多轮调用工具并改变状态，所以只评价最终文本往往不够。", "指南建议从真实失败与高价值任务起步，持续阅读轨迹并检查评分器。评测系统本身的假设错误，也可能导致有效工作被误判。"]},
+      {"heading": "实践推演：建立第一版项目评测集", "paragraphs": ["下面是针对本站开源工具的应用建议。"], "list": ["先收集少量重要且可复现的任务，写清初始状态与成功条件。", "能用确定性检查的要求优先写成程序检查。", "需要模型判断的部分保留评分依据，并用人工样本校准。", "把回归失败回写为数据，同时检查是否是环境或评分器的问题。"]},
+      {"heading": "适用边界", "paragraphs": ["这是 2026 年初的实践指南，作为基础方法保留，不包装成最新论文。本文没有替任何模型建立能力排名。"]}
+    ],
+    "sources": [{"title": "Demystifying evals for AI agents", "url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents"}]
+  },
+  {
+    "slug": "osworld-client-evaluation", "topic": "automation",
+    "title": "OSWorld：在真实桌面环境里验收 Agent",
+    "date": "2024-04-11", "kind": "基准导读", "venue": "OSWorld · 持续维护的基准",
+    "summary": "以桌面环境、输入模态和任务状态为单位理解客户端自动化评测。",
+    "tags": ["Computer use", "桌面 Agent", "OSWorld"],
+    "sections": [
+      {"heading": "官方资料要点", "paragraphs": ["OSWorld 提供真实电脑环境中的任务与评测接口。当前项目页列有 OSWorld-Verified，并区分截图、无障碍树等不同输入方式，以及通用模型、专用模型与 Agent 框架。", "这种区分很重要：模型能力、定位组件与执行框架共同影响结果。比较两个客户端 Agent，需要同时看环境、输入和执行协议，而不是只比较模型名称。"]},
+      {"heading": "实践推演：把桌面经验迁移到 App 测试", "paragraphs": ["以下为跨平台评测设计建议，不表示 Android 结果已获 OSWorld 验证。"], "list": ["冻结设备分辨率、应用版本、登录状态与任务起始页。", "在任务前复位状态，任务后独立检查实际结果。", "分别运行截图、UI 树和混合输入方案，记录成本与失败类型。", "报告环境异常与任务失败，不将两者混算。"]},
+      {"heading": "适用边界", "paragraphs": ["原始工作发表于 2024 年，项目页在本次整理时仍维护 Verified 协议。本文不转载动态排行榜，也不把桌面任务成绩外推为移动端成绩。"]}
+    ],
+    "sources": [{"title": "OSWorld 官方项目与评测说明", "url": "https://osworld-v1.xlang.ai/"}, {"title": "OSWorld 原始论文", "url": "https://arxiv.org/abs/2404.07972"}]
+  }
+]

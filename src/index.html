@@ -1,389 +1,66 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f4f7fb" />
-    <meta
-      name="description"
-      content="AIQA 研究站收录 AI-QA 方向的开源项目与研究笔记，关注评测、Agent 可靠性、可观测性与质量工程。"
-    />
-    <link rel="canonical" href="https://aiqaprobe.com/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="AIQA 研究站 | 开源项目与 AI-QA 笔记" />
-    <meta property="og:description" content="AI-QA 的开源工具、研究笔记和证据链。" />
-    <meta property="og:url" content="https://aiqaprobe.com/" />
-    <meta property="og:image" content="https://aiqaprobe.com/assets/og.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>AIQA 研究站 | 开源项目与 AI-QA 笔记</title>
-    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="./site.webmanifest" />
-    <link rel="stylesheet" href="./styles.css" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "name": "AIQA 研究站",
-            "alternateName": "AIQA Probe",
-            "url": "https://aiqaprobe.com/"
-          },
-          {
-            "@type": "SoftwareSourceCode",
-            "name": "AI Proxy",
-            "description": "面向 macOS 的本地 HTTP(S) 抓包、AI 调查与 QA 复现工作台。",
-            "codeRepository": "https://github.com/STEVE-DENG/ai-proxy",
-            "license": "https://opensource.org/licenses/MIT",
-            "programmingLanguage": ["TypeScript", "Python", "Rust"]
-          },
-          {
-            "@type": "SoftwareSourceCode",
-            "name": "AI App Test Agent",
-            "description": "基于 Tauri、React 和 Rust 的 Android AI 自动化工作台。",
-            "codeRepository": "https://github.com/STEVE-DENG/app-test-agent",
-            "programmingLanguage": ["TypeScript", "Rust"]
-          }
-        ]
-      }
-    </script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main">跳到正文</a>
-
-    <header class="control-bar">
-      <a class="brand-block" href="#top" aria-label="AIQA 研究站首页">
-        <strong>AIQA</strong>
-        <span>研究站</span>
-      </a>
-
-      <nav class="main-nav" aria-label="主导航">
-        <a href="#projects">开源项目</a>
-        <a href="#notes">研究笔记</a>
-      </nav>
-
-      <a
-        class="github-block"
-        href="https://github.com/STEVE-DENG"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>GitHub</span><span aria-hidden="true">↗</span>
-      </a>
-    </header>
-
-    <main id="main">
-      <section class="hero" id="top">
-        <div class="hero-copy">
-          <p class="hero-kicker">AI 质量工程 · 开源与研究</p>
-          <h1>
-            <span>让 AI 的质量</span>
-            <span class="hero-title-last">可以被验证。</span>
-          </h1>
-          <p class="hero-intro">
-            汇集 AI-QA 开源项目与研究笔记，持续追踪评测设计、Agent 可靠性和质量工程实践。
-            从真实问题出发，让每个判断都有迹可循。
-          </p>
-          <div class="hero-actions">
-            <a class="solid-action" href="#projects">浏览开源项目</a>
-            <a class="line-action" href="#notes">阅读研究笔记</a>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="theme-color" content="#f5f8f7"/>
+  <title>AIQA 研究站 | 开源工具与研究笔记</title>
+  <meta name="description" content="探索 AI 质量工程的开源工具与研究方法。AI Proxy 抓包调查、App Test Agent 客户端自动化，以及评测、知识库与 AI 测试的研究笔记。"/>
+  <link rel="canonical" href="https://aiqaprobe.com/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="AIQA 研究站 | 开源工具与研究笔记"/>
+  <meta property="og:description" content="探索 AI 质量工程，让研究落到工具与实践。"/>
+  <meta property="og:url" content="https://aiqaprobe.com/"/>
+  <meta property="og:image" content="https://aiqaprobe.com/assets/brand.png"/>
+  <meta name="twitter:card" content="summary"/>
+  <link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32"/>
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <link rel="alternate" type="application/rss+xml" title="AIQA 研究笔记" href="/feed.xml"/>
+  <link rel="stylesheet" href="/styles.css?v=20261030"/>
+</head>
+<body>
+  <!--HEADER-->
+  <main id="main">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span>探索 AI 质量工程</p>
+        <h1>让 AI 质量研究，<br/>落到工具与实践。</h1>
+        <p class="hero-description">做能解决问题的开源工具，记值得反复阅读的研究笔记。<br class="desktop-break"/>从一次失败的现场，到可验证、可复用的方法。</p>
+        <div class="hero-actions"><a class="button button-primary" href="#projects">探索开源项目 <span aria-hidden="true">↗</span></a><a class="button button-quiet" href="/notes/">打开研究笔记 <span aria-hidden="true">→</span></a></div>
+        <div class="hero-footnote"><span>开源共建</span><i></i><span>证据优先</span><i></i><span>持续积累</span></div>
+      </div>
+      <div class="research-desk">
+        <div class="desk-caption"><span>研究从这里展开</span><span class="desk-date">{{REVIEWED}}</span></div>
+        <div class="folder folder-projects">
+          <div class="folder-tab"><span class="folder-dot"></span>开源工具</div>
+          <a href="#ai-proxy" class="folder-project"><span class="mini-app proxy-mark" aria-hidden="true">⌁</span><span><strong>AI Proxy</strong><small>采集请求，追溯证据</small></span><b aria-hidden="true">↗</b></a>
+          <a href="#app-test-agent" class="folder-project"><span class="mini-app agent-mark" aria-hidden="true">⌘</span><span><strong>App Test Agent</strong><small>理解界面，执行任务</small></span><b aria-hidden="true">↗</b></a>
+        </div>
+        <div class="folder folder-notes"><div class="folder-tab"><span class="folder-dot"></span>研究笔记<span>{{NOTE_COUNT}} 篇</span></div><div class="folder-topics"><a href="/notes/?topic=evaluation">AI 评测<span>↗</span></a><a href="/notes/?topic=automation">客户端自动化<span>↗</span></a><a href="/notes/?topic=knowledge">AI 知识库<span>↗</span></a><a href="/notes/?topic=testing">AI 测试<span>↗</span></a></div><div class="folder-bottom"><span>读论文 · 做工具 · 记方法</span><span aria-hidden="true">✳</span></div></div>
+      </div>
+    </section>
+    <section class="projects-section wrap section-space" id="projects">
+      <div class="section-heading"><div><p class="eyebrow">从真实问题出发</p><h2>正在做的开源项目</h2></div><p>一端连接问题现场，<br/>一端探索自动化的可能。</p></div>
+      <div class="projects-grid">
+        <article class="project-card" id="ai-proxy">
+          <div class="project-art proxy-art" aria-label="AI Proxy 工作流示意：请求采集、字段证据、重放与验证">
+            <div class="mock-window"><div class="mock-title"><span><i></i><i></i><i></i></span><span>AI Proxy</span><small>工作流示意</small></div><div class="proxy-workspace"><div class="request-list"><span class="mock-label">请求采集</span><div><b>GET</b><span>/api/context</span><em>200</em></div><div class="request-active"><b>POST</b><span>/api/chat</span><em>502</em></div><div><b>GET</b><span>/api/tools</span><em>200</em></div><div><b>POST</b><span>/api/replay</span><em>200</em></div></div><div class="evidence-preview"><span class="mock-label">字段证据</span><code><span>request.id</span><br/>trace_sample<br/><span>error.type</span><br/>upstream_timeout</code><div class="evidence-foot">记录 → 重放 → 验证</div></div></div></div>
           </div>
-        </div>
-
-        <div class="hero-index-stage">
-          <div class="research-map" aria-label="AI-QA 研究路径：采集现场、分析问题、建立评测、持续回归">
-            <div class="map-heading">
-              <span>AI-QA 研究路径</span>
-              <span class="map-live"><i></i>持续积累</span>
-            </div>
-            <div class="map-flow">
-              <div class="map-node">
-                <span class="node-mark">01</span>
-                <div><strong>采集现场</strong><small>请求 · 截图 · Agent 轨迹</small></div>
-                <span class="node-icon icon-capture" aria-hidden="true"></span>
-              </div>
-              <div class="map-node">
-                <span class="node-mark">02</span>
-                <div><strong>分析问题</strong><small>上下文 · 失败原因 · 证据</small></div>
-                <span class="node-icon icon-analyze" aria-hidden="true"></span>
-              </div>
-              <div class="map-node">
-                <span class="node-mark">03</span>
-                <div><strong>建立评测</strong><small>用例 · 基线 · 质量指标</small></div>
-                <span class="node-icon icon-evaluate" aria-hidden="true"></span>
-              </div>
-              <div class="map-node">
-                <span class="node-mark">04</span>
-                <div><strong>持续回归</strong><small>复现 · 验证 · 迭代</small></div>
-                <span class="node-icon icon-regress" aria-hidden="true"></span>
-              </div>
-            </div>
-            <div class="map-footer"><span>从真实失败开始</span><span>TOOLS + NOTES</span></div>
+          <div class="project-info"><div class="project-type"><span><i></i>开发预览 · v0.2.1</span><span>macOS</span></div><h3>AI Proxy</h3><p class="project-lead">让接口问题，有迹可循。</p><p>本地 HTTP(S) 抓包、AI 调查与 QA 复现工作台。把请求、字段证据、重放和缺陷报告，放进同一条调查路径。</p><ul class="tags"><li>Tauri</li><li>React</li><li>Python</li><li>本地优先</li></ul><div class="project-actions"><a href="https://github.com/STEVE-DENG/ai-proxy" target="_blank" rel="noopener noreferrer">查看源码 <span aria-hidden="true">↗</span></a><a href="https://github.com/STEVE-DENG/ai-proxy/releases/tag/v0.2.1" target="_blank" rel="noopener noreferrer">预览版下载 <span aria-hidden="true">↗</span></a></div></div>
+        </article>
+        <article class="project-card" id="app-test-agent">
+          <div class="project-art agent-art" aria-label="App Test Agent 工作流示意：观察界面、决策执行、保留轨迹">
+            <div class="agent-route"><div><span class="route-icon">◎</span><span><strong>观察界面</strong><small>截图 + UI 树 + OCR</small></span></div><div><span class="route-icon">⌁</span><span><strong>决策与执行</strong><small>多模态 Agent</small></span></div><div><span class="route-icon">✓</span><span><strong>留下可复用的轨迹</strong><small>证据 → 审核 → Skill</small></span></div></div><div class="phone"><div class="phone-camera"></div><div class="phone-topline"></div><div class="phone-grid"><i></i><i></i><i></i><i></i></div><div class="phone-target"><span>目标控件</span><b>✓</b></div><div class="phone-bottomline"></div></div><span class="art-caption">工作流示意</span>
           </div>
-        </div>
-      </section>
-
-      <section class="projects-section" id="projects">
-        <div class="section-head">
-          <div>
-            <p class="section-label">开源项目</p>
-            <h2>把判断做成工具</h2>
-          </div>
-          <p class="section-intro">
-            每个项目都从一个具体的 AI-QA 问题出发：如何看到失败、保留证据，
-            再把一次排查变成可以重复执行的方法。
-          </p>
-        </div>
-
-        <div class="project-stack">
-          <article class="project-card" id="ai-proxy">
-            <div class="project-copy">
-              <div class="project-status-row">
-                <span class="project-state">开发预览 · v0.1.0</span>
-                <span>macOS</span>
-              </div>
-              <h3>AI Proxy</h3>
-              <p class="project-summary">本地 HTTP(S) 抓包、AI 调查与 QA 复现工作台。</p>
-              <p class="project-description">
-                把抓包树、固定范围的 AI Agent、字段证据、请求重放、故障矩阵和缺陷报告
-                放进同一个桌面应用。抓包与本地分析无需部署服务端，AI 分析使用自己的模型供应商。
-              </p>
-              <ul class="project-tags" aria-label="技术栈">
-                <li>Tauri</li>
-                <li>React</li>
-                <li>Python</li>
-                <li>Local-first</li>
-              </ul>
-              <a
-                class="project-link"
-                href="https://github.com/STEVE-DENG/ai-proxy"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                查看源码 <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-
-            <div class="project-visual proxy-visual" aria-hidden="true">
-              <div class="visual-bar">
-                <span>LOCAL TRACE</span>
-                <span class="live-label">LIVE</span>
-              </div>
-              <div class="trace-lines">
-                <span style="--w: 82%; --delay: 0s"></span>
-                <span style="--w: 55%; --delay: 0.15s"></span>
-                <span style="--w: 94%; --delay: 0.3s"></span>
-                <span style="--w: 67%; --delay: 0.45s"></span>
-                <span style="--w: 39%; --delay: 0.6s"></span>
-              </div>
-              <div class="trace-result">
-                <span>REQUEST</span>
-                <span>200</span>
-                <span>42 ms</span>
-              </div>
-              <div class="signal-wave">
-                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card project-card-alt" id="app-test-agent">
-            <div class="project-copy">
-              <div class="project-status-row">
-                <span class="project-state">MVP 开发中 · v0.1.0</span>
-                <span>Android</span>
-              </div>
-              <h3>App Test Agent</h3>
-              <p class="project-summary">
-                用一句话驱动 Android 设备完成任务，并把成功路线沉淀为 Skill。
-              </p>
-              <p class="project-description">
-                通过 ADB 采集截图与 UI 树，让多模态 Agent 在设备上观察、决策和执行。
-                每一步留下轨迹与证据，成功任务经过审核后编译为可复用的 Skill。
-              </p>
-              <ul class="project-tags" aria-label="技术栈">
-                <li>Tauri</li>
-                <li>Rust</li>
-                <li>ReAct</li>
-                <li>Multimodal</li>
-              </ul>
-              <a
-                class="project-link"
-                href="https://github.com/STEVE-DENG/app-test-agent"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                查看源码 <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-
-            <div class="project-visual agent-visual" aria-hidden="true">
-              <div class="agent-step"><span>01</span>SCREEN + UI TREE</div>
-              <div class="agent-step"><span>02</span>REASON + ACT</div>
-              <div class="agent-step"><span>03</span>TRACE + EVIDENCE</div>
-              <div class="agent-step"><span>04</span>SKILL CANDIDATE</div>
-              <div class="device-frame">
-                <span></span>
-                <span></span>
-                <span></span>
-                <b>RUN</b>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="notes-section" id="notes">
-        <div class="section-head notes-head">
-          <div>
-            <p class="section-label">研究笔记</p>
-            <h2><span>把失败写成</span><span>可复用的判断。</span></h2>
-          </div>
-          <p class="section-intro">
-            关于评测、Agent 和 QA 工程的短笔记。点击标题展开，按主题筛选。
-          </p>
-        </div>
-
-        <div class="notes-toolbar">
-          <div class="note-filters" role="group" aria-label="按主题筛选笔记">
-            <button type="button" data-filter="all" aria-pressed="true">全部 <span>6</span></button>
-            <button type="button" data-filter="eval" aria-pressed="false">评测 <span>2</span></button>
-            <button type="button" data-filter="agent" aria-pressed="false">Agent <span>2</span></button>
-            <button type="button" data-filter="engineering" aria-pressed="false">工程 <span>2</span></button>
-          </div>
-          <p id="note-count" role="status" aria-live="polite">显示 6 篇笔记</p>
-        </div>
-
-        <div class="note-list">
-          <details class="note" data-topic="engineering" open>
-            <summary>
-              <time datetime="2026-10-26">2026.10.26</time>
-              <span class="note-topic">工程</span>
-              <strong>抓包只是证据链的起点</strong>
-              <span class="note-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="note-body">
-              <p>
-                抓到一条失败请求，只能说明问题发生过，不能说明问题为什么发生。
-                有用的证据链至少包含触发条件、请求上下文、模型或工具状态，以及一次可重复的复现。
-              </p>
-              <p>
-                所以抓包工具不应该停在“看见”。它还要帮助人固定范围、标记证据、重放失败，
-                最后生成一条能够进入回归集的用例。
-              </p>
-              <span class="note-tag">trace / replay / evidence</span>
-            </div>
-          </details>
-
-          <details class="note" data-topic="agent">
-            <summary>
-              <time datetime="2026-10-25">2026.10.25</time>
-              <span class="note-topic">Agent</span>
-              <strong>Agent 的失败，不能只记一个分数</strong>
-              <span class="note-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="note-body">
-              <p>
-                多步任务的最终答案只是结果，不是过程。工具选择错误、参数漂移、上下文丢失、
-                循环超时，都可能得到同一个“任务失败”的标签。
-              </p>
-              <p>
-                先给失败分类，再比较不同版本，才知道模型到底变好了，还是只是换了一种坏法。
-              </p>
-              <span class="note-tag">failure taxonomy / trace</span>
-            </div>
-          </details>
-
-          <details class="note" data-topic="eval">
-            <summary>
-              <time datetime="2026-10-24">2026.10.24</time>
-              <span class="note-topic">评测</span>
-              <strong>AI 评测不是刷榜</strong>
-              <span class="note-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="note-body">
-              <p>
-                榜单给方向，业务给答案。好的 eval 不只要算出一个分数，还要能解释模型为什么失败、
-                下次怎样确认它没有复发。
-              </p>
-              <p>
-                评测集、评分器和统计波动需要一起设计。没有失败切片的分数，很难支持真实决策。
-              </p>
-              <span class="note-tag">eval set / rubric / baseline</span>
-            </div>
-          </details>
-
-          <details class="note" data-topic="agent">
-            <summary>
-              <time datetime="2026-10-23">2026.10.23</time>
-              <span class="note-topic">Agent</span>
-              <strong>为什么 Skill 需要人工批准</strong>
-              <span class="note-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="note-body">
-              <p>
-                成功轨迹不等于可复用能力。一次任务成功，可能依赖偶然的页面状态、
-                不稳定的坐标，或者模型恰好猜对了下一步。
-              </p>
-              <p>
-                人工批准的价值不是增加流程，而是检查这段路线是否真的被理解、是否值得被再次执行。
-              </p>
-              <span class="note-tag">skill / approval / replay</span>
-            </div>
-          </details>
-
-          <details class="note" data-topic="engineering">
-            <summary>
-              <time datetime="2026-10-22">2026.10.22</time>
-              <span class="note-topic">工程</span>
-              <strong>从一次失败到一条回归</strong>
-              <span class="note-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="note-body">
-              <p>
-                一条好的回归用例，应该保留触发失败的上下文，又收缩到可以稳定重放的最小范围。
-                先固定证据，再修正判断，最后才让门禁上场。
-              </p>
-              <span class="note-tag">regression / evidence</span>
-            </div>
-          </details>
-
-          <details class="note" data-topic="eval">
-            <summary>
-              <time datetime="2026-10-20">2026.10.20</time>
-              <span class="note-topic">评测</span>
-              <strong>把幻觉当缺陷分类</strong>
-              <span class="note-toggle" aria-hidden="true"></span>
-            </summary>
-            <div class="note-body">
-              <p>
-                幻觉不是一种单一错误。它可能是检索缺失、推理跳步、工具误用，
-                或者评价标准本身不清。先分类，再谈修复。
-              </p>
-              <span class="note-tag">hallucination / rubric</span>
-            </div>
-          </details>
-        </div>
-
-        <a
-          class="notes-feedback"
-          href="https://github.com/STEVE-DENG/ai-proxy/issues/new?title=%5B%E7%AC%94%E8%AE%B0%E5%BB%BA%E8%AE%AE%5D%20AIQA%20%E7%A0%94%E7%A9%B6%E7%AB%99"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>发现错误，或想推荐一条资料？</span>
-          <strong>在 GitHub 中提出建议 ↗</strong>
-        </a>
-      </section>
-
-    </main>
-
-    <footer class="site-footer">
-      <a class="footer-brand" href="#top">AIQA <span>研究站</span></a>
-      <p>开源项目 · AI-QA 研究笔记 · 持续更新</p>
-      <p>© <span id="year">2026</span></p>
-    </footer>
-
-    <script src="./script.js" type="module"></script>
-  </body>
+          <div class="project-info"><div class="project-type"><span><i></i>持续开发中</span><span>Android</span></div><h3>App Test Agent</h3><p class="project-lead">从一句指令，到可复用的操作。</p><p>面向 Android 的 AI 自动化工作台。融合截图、UI 树与 OCR 感知，记录执行证据，并将成功轨迹沉淀为可审核的 Skill。</p><ul class="tags"><li>Tauri</li><li>Rust</li><li>多模态</li><li>ReAct</li></ul><div class="project-actions"><a href="https://github.com/STEVE-DENG/app-test-agent" target="_blank" rel="noopener noreferrer">查看源码 <span aria-hidden="true">↗</span></a><a href="https://github.com/STEVE-DENG/app-test-agent/issues" target="_blank" rel="noopener noreferrer">反馈与讨论 <span aria-hidden="true">↗</span></a></div></div>
+        </article>
+      </div>
+    </section>
+    <section class="knowledge-section" id="notes"><div class="wrap section-space"><div class="section-heading"><div><p class="eyebrow">把研究慢慢积累起来</p><h2>四个方向，一本研究手记。</h2></div><a class="text-link" href="/notes/">进入笔记专区 <span aria-hidden="true">→</span></a></div><div class="topic-tiles"><!--TOPICS--></div><div class="latest-heading"><h3>近期阅读</h3><span>原文出处、方法摘记，以及实践中的思考</span><a href="/notes/">全部 {{NOTE_COUNT}} 篇 <span aria-hidden="true">→</span></a></div><div class="latest-notes"><!--LATEST--></div><p class="source-note">本次资料核对 {{REVIEWED}}。新研究与基础阅读分别标注；实践推演不等同于已复现实验。</p></div></section>
+    <section class="feedback-section wrap section-space" id="feedback"><div class="feedback-panel"><div><p class="eyebrow">一起把工具和笔记做好</p><h2>你的问题，<br/>也可以成为下一次研究的起点。</h2><p>遇到了 Bug，有新的使用场景，或读到值得收藏的论文？<br/>欢迎留下线索，一起让 AI-QA 的实践更扎实。</p></div><div class="feedback-links"><a href="https://github.com/STEVE-DENG/aiqaprobe/issues/new?title=%5B%E9%97%AE%E9%A2%98%E5%8F%8D%E9%A6%88%5D" target="_blank" rel="noopener noreferrer"><span><strong>反馈问题</strong><small>描述现象、复现步骤或改进建议</small></span><b aria-hidden="true">↗</b></a><a href="https://github.com/STEVE-DENG/aiqaprobe/issues/new?title=%5B%E8%B5%84%E6%96%99%E6%8E%A8%E8%8D%90%5D" target="_blank" rel="noopener noreferrer"><span><strong>推荐一份资料</strong><small>论文、开源工具、技术文章或笔记勘误</small></span><b aria-hidden="true">↗</b></a><p>通过 GitHub Issues 交流，提交前可以预览和编辑。</p></div></div></section>
+  </main>
+  <!--FOOTER-->
+  <script src="/script.js?v=20261030" type="module"></script>
+</body>
 </html>
