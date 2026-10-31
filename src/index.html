@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="theme-color" content="#f5f8f7"/>
   <title>AIQA 研究站 | 开源工具与研究笔记</title>
-  <meta name="description" content="探索 AI 质量工程的开源工具与研究方法。AI Proxy 抓包调查、App Test Agent 客户端自动化，以及评测、知识库与 AI 测试的研究笔记。"/>
+  <meta name="description" content="探索 AI 质量工程的开源工具与研究方法。AI Proxy 抓包调查、App Test Agent 客户端自动化、PureEval Agent 与 Skill 评测，以及 AI-QA 研究笔记。"/>
   <link rel="canonical" href="https://aiqaprobe.com/"/>
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="AIQA 研究站 | 开源工具与研究笔记"/>
@@ -17,7 +17,7 @@
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"/>
   <link rel="manifest" href="/site.webmanifest"/>
   <link rel="alternate" type="application/rss+xml" title="AIQA 研究笔记" href="/feed.xml"/>
-  <link rel="stylesheet" href="/styles.css?v=20261030"/>
+  <link rel="stylesheet" href="/styles.css?v=20261031"/>
 </head>
 <body>
   <!--HEADER-->
@@ -36,12 +36,13 @@
           <div class="folder-tab"><span class="folder-dot"></span>开源工具</div>
           <a href="#ai-proxy" class="folder-project"><span class="mini-app proxy-mark" aria-hidden="true">⌁</span><span><strong>AI Proxy</strong><small>采集请求，追溯证据</small></span><b aria-hidden="true">↗</b></a>
           <a href="#app-test-agent" class="folder-project"><span class="mini-app agent-mark" aria-hidden="true">⌘</span><span><strong>App Test Agent</strong><small>理解界面，执行任务</small></span><b aria-hidden="true">↗</b></a>
+          <a href="#ai-judge-agent" class="folder-project"><span class="mini-app judge-mark" aria-hidden="true">✓</span><span><strong>PureEval</strong><small>评测 Agent，比较版本</small></span><b aria-hidden="true">↗</b></a>
         </div>
         <div class="folder folder-notes"><div class="folder-tab"><span class="folder-dot"></span>研究笔记<span>{{NOTE_COUNT}} 篇</span></div><div class="folder-topics"><a href="/notes/?topic=evaluation">AI 评测<span>↗</span></a><a href="/notes/?topic=automation">客户端自动化<span>↗</span></a><a href="/notes/?topic=knowledge">AI 知识库<span>↗</span></a><a href="/notes/?topic=testing">AI 测试<span>↗</span></a></div><div class="folder-bottom"><span>读论文 · 做工具 · 记方法</span><span aria-hidden="true">✳</span></div></div>
       </div>
     </section>
     <section class="projects-section wrap section-space" id="projects">
-      <div class="section-heading"><div><p class="eyebrow">从真实问题出发</p><h2>正在做的开源项目</h2></div><p>一端连接问题现场，<br/>一端探索自动化的可能。</p></div>
+      <div class="section-heading"><div><p class="eyebrow">从真实问题出发</p><h2>正在做的开源项目</h2></div><p>从问题调查、自动化执行，<br/>到有证据的质量评测。</p></div>
       <div class="projects-grid">
         <article class="project-card" id="ai-proxy">
           <div class="project-art proxy-art" aria-label="AI Proxy 工作流示意：请求采集、字段证据、重放与验证">
@@ -54,6 +55,18 @@
             <div class="agent-route"><div><span class="route-icon">◎</span><span><strong>观察界面</strong><small>截图 + UI 树 + OCR</small></span></div><div><span class="route-icon">⌁</span><span><strong>决策与执行</strong><small>多模态 Agent</small></span></div><div><span class="route-icon">✓</span><span><strong>留下可复用的轨迹</strong><small>证据 → 审核 → Skill</small></span></div></div><div class="phone"><div class="phone-camera"></div><div class="phone-topline"></div><div class="phone-grid"><i></i><i></i><i></i><i></i></div><div class="phone-target"><span>目标控件</span><b>✓</b></div><div class="phone-bottomline"></div></div><span class="art-caption">工作流示意</span>
           </div>
           <div class="project-info"><div class="project-type"><span><i></i>持续开发中</span><span>Android</span></div><h3>App Test Agent</h3><p class="project-lead">从一句指令，到可复用的操作。</p><p>面向 Android 的 AI 自动化工作台。融合截图、UI 树与 OCR 感知，记录执行证据，并将成功轨迹沉淀为可审核的 Skill。</p><ul class="tags"><li>Tauri</li><li>Rust</li><li>多模态</li><li>ReAct</li></ul><div class="project-actions"><a href="https://github.com/STEVE-DENG/app-test-agent" target="_blank" rel="noopener noreferrer">查看源码 <span aria-hidden="true">↗</span></a><a href="https://github.com/STEVE-DENG/app-test-agent/issues" target="_blank" rel="noopener noreferrer">反馈与讨论 <span aria-hidden="true">↗</span></a></div></div>
+        </article>
+        <article class="project-card judge-card" id="ai-judge-agent">
+          <div class="project-art judge-art" role="img" aria-label="PureEval 工作流示意：准备数据集，执行 Agent 或 Skill，结合规则与模型评分，保留证据并对比版本">
+            <div class="judge-art-heading"><strong>PureEval</strong><span>评测流程示意</span></div>
+            <ol class="judge-flow">
+              <li><span class="judge-step-icon" aria-hidden="true">≡</span><div><strong>准备评测集</strong><span>任务输入与预期结果</span></div></li>
+              <li><span class="judge-step-icon" aria-hidden="true">↳</span><div><strong>执行 Agent / Skill</strong><span>记录轨迹、输出与产物</span></div></li>
+              <li><span class="judge-step-icon" aria-hidden="true">✓</span><div><strong>规则 + LLM Judge</strong><span>评分、解释与人工复核</span></div></li>
+            </ol>
+            <div class="judge-art-outcomes"><span>版本对比</span><span>成本追踪</span><span>回归分析</span></div>
+          </div>
+          <div class="project-info"><div class="project-type"><span><i></i>持续开发中</span><span>macOS</span></div><h3>PureEval</h3><p class="project-repository">AI Judge Agent</p><p class="project-lead">Agent 的进步，让评测来说话。</p><p>本地优先的 Agent 与 Skill 评测工作台。从数据集准备、批量执行到规则与 LLM Judge 评分，保留执行轨迹和产物，对比版本质量、成本与耗时。</p><ul class="tags"><li>Tauri</li><li>React</li><li>Python</li><li>LLM Judge</li><li>本地优先</li></ul><div class="project-actions"><a href="https://github.com/STEVE-DENG/ai-judge-agent" target="_blank" rel="noopener noreferrer">查看源码 <span aria-hidden="true">↗</span></a><a href="https://github.com/STEVE-DENG/ai-judge-agent/issues" target="_blank" rel="noopener noreferrer">反馈与讨论 <span aria-hidden="true">↗</span></a></div></div>
         </article>
       </div>
     </section>

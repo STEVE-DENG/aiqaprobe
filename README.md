@@ -21,7 +21,7 @@ npm run preview
 
 ## 内容结构
 
-- `src/index.html`：首页，两个真实开源项目、研究方向与反馈入口。
+- `src/index.html`：首页，三个真实开源项目（AI Proxy、App Test Agent、PureEval）、研究方向与反馈入口。
 - `src/styles.css`：首页、索引、文章和移动端的公共样式。
 - `src/script.js`：笔记搜索、分类、排序、可分享查询参数和复制链接。
 - `content/research.json`：12 篇有来源的论文摘记、官方研究及基础阅读。
@@ -35,6 +35,12 @@ npm run preview
 原文要点与实践推演应分开，注明预印本、基础阅读与适用边界。来源更新和 RSS 收录日期在 `scripts/site.mjs` 的 `reviewed` 中维护；来源日期保留在各篇内容中。本站没有自动抓取或后台定时更新。
 
 完整索引和正文在构建时生成，禁用 JavaScript 仍可阅读；搜索、分类和排序由浏览器增强。资料建议、项目问题和勘误通过 GitHub Issues 收集，本站不采集访客表单或个人资料。
+
+## 开源项目
+
+- [AI Proxy](https://github.com/STEVE-DENG/ai-proxy)：本地 HTTP(S) 抓包、AI 调查与 QA 复现工作台。
+- [App Test Agent](https://github.com/STEVE-DENG/app-test-agent)：面向 Android 的 AI 自动化工作台。
+- [PureEval / AI Judge Agent](https://github.com/STEVE-DENG/ai-judge-agent)：本地优先的 macOS Agent 与 Skill 评测工作台，整合数据集、执行轨迹、规则与 LLM Judge 评分、版本对比及成本追踪。
 
 ## 发布
 

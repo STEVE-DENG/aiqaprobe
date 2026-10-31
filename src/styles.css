@@ -75,6 +75,7 @@ h1 { font-size: clamp(38px, 4.55vw, 60px); font-weight: 650; letter-spacing: -2.
 .mini-app { display: grid; place-items: center; width: 35px; height: 35px; border-radius: 9px; font-size: 25px; }
 .proxy-mark { background: #fcfcf4; color: #34735b; }
 .agent-mark { background: #f1f5fa; color: #53768c; font-size: 21px; }
+.judge-mark { background: #f0ecdf; color: #70582a; font-size: 21px; }
 .folder-notes { padding: 20px 24px 13px; margin-top: -12px; margin-left: 32px; background: #fffef9; border: 1px solid #dddcd1; transform: rotate(2deg); box-shadow: 0 14px 28px -18px #2c554f46; }
 .folder-notes::before { content: ""; position: absolute; top: -12px; left: -1px; width: 124px; height: 14px; border: 1px solid #dddcd1; border-bottom: none; border-radius: 9px 12px 0 0; background: #fffef9; }
 .folder-notes .folder-tab { color: #4c563e; }
@@ -143,6 +144,23 @@ h2 { font-size: clamp(25px, 2.7vw, 34px); letter-spacing: -1px; font-weight: 620
 .project-actions a { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--green); }
 .project-actions a + a { color: #435f4e; }
 .project-actions a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.judge-card { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.judge-card > * { min-width: 0; }
+.judge-card .judge-art { height: auto; border-bottom: 0; border-right: 1px solid var(--line); }
+.judge-art { background: #e9ede3; padding: 30px; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+.judge-art-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; color: #354f3e; }
+.judge-art-heading strong { font-size: 23px; letter-spacing: -.5px; }
+.judge-art-heading > span { font-size: 14px; }
+.judge-flow { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+.judge-flow li { display: flex; align-items: center; gap: 15px; }
+.judge-step-icon { width: 40px; height: 40px; flex-shrink: 0; display: grid; place-items: center; background: #fcfdf9; color: #416b50; border: 1px solid #c5d2bf; border-radius: 10px; font-size: 24px; }
+.judge-flow strong { display: block; font-size: 17px; font-weight: 600; color: #294934; }
+.judge-flow div > span { display: block; font-size: 15px; color: #465e49; margin-top: 2px; }
+.judge-art-outcomes { display: flex; flex-wrap: wrap; gap: 8px 18px; padding-top: 18px; border-top: 1px solid #c8d4c3; color: #3d5742; font-size: 15px; }
+.project-info .project-repository { font-size: 16px; color: #405c55; margin-top: 3px; }
+.judge-card .project-info > p:not(.project-lead) { font-size: 16px; }
+.judge-card .tags li { font-size: 14px; color: #405e4b; }
+.judge-card .project-actions a { font-size: 16px; }
 .knowledge-section { background: #edf3ef; border-block: 1px solid #e0e9e1; }
 .topic-tiles { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; }
 .topic-tile { padding: 22px 20px 16px; background: #fafffba6; border: 1px solid #dbe6dc; border-radius: 10px; display: flex; flex-direction: column; align-items: flex-start; transition: background .15s; }
@@ -520,4 +538,8 @@ h2 { font-size: clamp(25px, 2.7vw, 34px); letter-spacing: -1px; font-weight: 620
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media (max-width: 700px) {
+  .judge-card { grid-template-columns: minmax(0, 1fr); }
+  .judge-card .judge-art { padding: 25px 21px; border-right: 0; border-bottom: 1px solid var(--line); }
 }
