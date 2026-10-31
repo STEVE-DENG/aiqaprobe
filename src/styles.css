@@ -276,6 +276,43 @@ h2 { font-size: clamp(25px, 2.7vw, 34px); letter-spacing: -1px; font-weight: 620
 .article-body ul { margin: 0; padding-left: 21px; font-size: 17px; color: #2e4d40; }
 .article-body li { padding-left: 4px; margin-block: 12px; line-height: 1.95; }
 .article-body li::marker { color: #7d9d85; }
+.evaluation-reading { margin-block: 30px; padding: 24px 0; border-block: 1px solid var(--line); }
+.evaluation-reading-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 24px; margin-bottom: 20px; }
+.evaluation-reading-heading h3 { font-size: 22px; font-weight: 600; }
+.evaluation-reading-heading > span { color: var(--muted); font-size: 16px; }
+.evaluation-reading ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.evaluation-reading li { min-width: 0; }
+.evaluation-reading li a { display: flex; align-items: flex-start; gap: 11px; height: 100%; }
+.reading-step { flex-shrink: 0; width: 25px; height: 25px; display: grid; place-items: center; border: 1px solid #9db8ab; border-radius: 50%; color: var(--green-dark); font-size: 15px; line-height: 1; margin-top: 2px; }
+.evaluation-reading strong { display: block; color: var(--ink); font-size: 17px; line-height: 1.6; font-weight: 600; }
+.evaluation-reading small { display: block; color: var(--muted); font-size: 15px; line-height: 1.8; margin-top: 5px; }
+.evaluation-reading a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+.notebook-content .evaluation-reading ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.article-figure { margin: 26px 0; }
+.article-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--canvas); }
+.article-figure > a { display: block; cursor: zoom-in; }
+.article-figure figcaption { font-size: 15px; line-height: 1.85; color: var(--muted); margin-top: 12px; }
+.article-figure figcaption a, .article-body .section-references a { color: var(--green-dark); text-decoration: underline; text-underline-offset: 3px; }
+.article-body .section-references { font-size: 15px; line-height: 1.8; margin: 18px 0 0; }
+.article-table-scroll { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); border-radius: 8px; }
+.article-table-scroll table { width: 100%; border-collapse: collapse; text-align: left; font-size: 16px; line-height: 1.85; color: #2e4d40; }
+.article-table-scroll caption { text-align: left; padding: 16px; background: #f1f6f2; color: var(--ink); font-size: 16px; font-weight: 600; }
+.article-table-scroll th, .article-table-scroll td { padding: 13px 16px; vertical-align: top; border-top: 1px solid var(--line); min-width: 120px; }
+.article-table-scroll thead th { color: var(--ink); background: #f8fbf9; font-weight: 600; }
+.article-table-scroll tbody th { font-weight: 600; color: var(--ink); }
+.article-next { display: block; margin: 28px 0; padding: 22px 24px; border-block: 1px solid var(--line); background: #edf4ef; }
+.article-next > span { font-size: 15px; color: var(--muted); }
+.article-next strong { display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 20px; margin-top: 6px; font-weight: 600; color: var(--green-dark); }
+.article-next:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 850px) {
+  .evaluation-reading ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .evaluation-reading ol, .notebook-content .evaluation-reading ol { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .evaluation-reading-heading h3 { font-size: 21px; }
+  .evaluation-reading small { margin-top: 2px; }
+  .article-table-scroll th, .article-table-scroll td { padding: 12px; }
+}
 .article-toc { position: sticky; top: 112px; align-self: start; padding-top: 18px; }
 .article-toc > p { font-size: 14px; color: #405e49; margin-bottom: 17px; }
 .article-toc nav { display: flex; flex-direction: column; gap: 15px; border-left: 1px solid #d4dfd5; padding-left: 17px; }

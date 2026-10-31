@@ -26,13 +26,17 @@ npm run preview
 - `src/script.js`：笔记搜索、分类、排序、可分享查询参数和复制链接。
 - `content/research.json`：12 篇有来源的论文摘记、官方研究及基础阅读。
 - `content/archive.json`：保留的 6 篇实践短记。
+- `content/methods.json`：4 篇 Agent 评测图文笔记，按任务设计、评分、可靠性与近期研究的顺序阅读。
 - `scripts/site.mjs`：公共组件、笔记索引与文章模板。
-- `scripts/build.mjs`：生成首页、18 个独立笔记页、RSS 与站点地图。
+- `scripts/build.mjs`：生成首页、22 个独立笔记页、RSS 与站点地图。
 - `src/assets/brand.png`：内置 imagegen 生成的 Q 节点与验证勾品牌图标。
+- `src/assets/notes/`：两张 GPT image 教学配图；提示词与来源范围见 `docs/agent-evaluation-content.md`。
 
 笔记分类为 `evaluation`、`automation`、`knowledge`、`testing`。新增笔记时填写唯一的英文 `slug`、标题、来源日期、类型、摘要、标签、分节与原始来源。日期可以精确到月，不虚构具体日期。构建会检查 slug 重复、分类、日期格式与来源协议。
 
-原文要点与实践推演应分开，注明预印本、基础阅读与适用边界。来源更新和 RSS 收录日期在 `scripts/site.mjs` 的 `reviewed` 中维护；来源日期保留在各篇内容中。本站没有自动抓取或后台定时更新。
+原文要点与实践推演应分开，注明预印本、基础阅读与适用边界。原文日期保留在论文条目中；原创方法使用 `dateLabel` 标记编写或整理日期，研究本身的日期写在正文与来源中。`checkedAt` 记录该篇来源核对日期，`addedAt` 记录 RSS 收录和站点地图日期；旧条目回退到 `scripts/site.mjs` 的 `reviewed`，不会因新增笔记而刷新旧文章日期。本站没有自动抓取或后台定时更新。
+
+文章分节支持 `figure`（本地路径、宽高、替代文本与说明）、`table`（标题、列与行）、`paragraphsAfter`（图表后说明）和 `references`（关联本篇来源数组的索引）。图片点击可查看原图；表格在窄屏横向滚动。正文须独立解释图中信息，避免只靠图片或颜色传达知识。
 
 完整索引和正文在构建时生成，禁用 JavaScript 仍可阅读；搜索、分类和排序由浏览器增强。资料建议、项目问题和勘误通过 GitHub Issues 收集，本站不采集访客表单或个人资料。
 
