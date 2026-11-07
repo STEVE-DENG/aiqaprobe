@@ -1,7 +1,7 @@
 {
   "api_base": "https://YOUR-WORKER.workers.dev",
   "docker_context": "colima-aiqa",
-  "image": "aiqa-executor:0.1.0",
+  "image": "aiqa-executor:0.2.0",
   "codex_model": "gpt-6.1-sol",
   "reasoning_effort": "medium",
   "poll_seconds": 60,

@@ -15,8 +15,9 @@ async function route(req, env) {
  if(req.method==='GET' && path==='/config') return json({siteKey:env.TURNSTILE_SITE_KEY||'',accepting:!!(env.TURNSTILE_SECRET && env.TURNSTILE_SITE_KEY)});
  if(req.method==='GET' && path==='/tasks') {
   const control=await env.DB.prepare('SELECT paused,heartbeat FROM control WHERE id=1').first();
-  const {results}=await env.DB.prepare("SELECT id,project,title,state,summary,created_at,updated_at,version,pr_url,commit_sha FROM tasks WHERE state NOT IN ('queued','claimed','screening','rejected') ORDER BY created_at DESC LIMIT 100").all();
-  return json({tasks:results,heartbeat:control.heartbeat,paused:!!control.paused});
+  const {results}=await env.DB.prepare("SELECT id,project,title,state,summary,created_at,updated_at,version,pr_url,commit_sha FROM tasks WHERE is_public=1 AND state NOT IN ('queued','claimed','screening','rejected') ORDER BY updated_at DESC LIMIT 100").all();
+  const totals=await env.DB.prepare("SELECT state,COUNT(*) AS count FROM tasks WHERE is_public=1 AND state NOT IN ('queued','claimed','screening','rejected') GROUP BY state").all();
+  return json({tasks:results,totals:totals.results,heartbeat:control.heartbeat,paused:!!control.paused});
  }
  if(req.method==='GET' && /^\/tasks\/[a-f0-9-]{36}$/.test(path)) {
   const id=path.split('/')[2];
@@ -73,7 +74,7 @@ async function route(req, env) {
    const version=b.version||null, sha=b.commit_sha||null;
    if((version&&!/^v\d+\.\d+\.\d+$/.test(version))||(sha&&!/^[a-f0-9]{40}$/.test(sha)))return json({error:'invalid version'},400);
    if(b.state==='completed'&&(!version||!pr||!sha))return json({error:'incomplete delivery'},400);
-   const updated=await env.DB.prepare('UPDATE tasks SET state=?,summary=?,updated_at=?,version=COALESCE(?,version),pr_url=COALESCE(?,pr_url),commit_sha=COALESCE(?,commit_sha) WHERE id=? AND state=? AND lease=? RETURNING id').bind(b.state,summary,now,version,pr,sha,task.id,task.state,b.lease).first();
+   const updated=await env.DB.prepare("UPDATE tasks SET state=?,is_public=CASE WHEN ?='planning' THEN 1 ELSE is_public END,summary=?,updated_at=?,version=COALESCE(?,version),pr_url=COALESCE(?,pr_url),commit_sha=COALESCE(?,commit_sha) WHERE id=? AND state=? AND lease=? RETURNING id").bind(b.state,b.state,summary,now,version,pr,sha,task.id,task.state,b.lease).first();
    if(!updated)return json({error:'conflict'},409);
    await env.DB.prepare('INSERT INTO events(task_id,state,created_at) VALUES(?,?,?)').bind(task.id,b.state,now).run();return json({ok:true});
   }

@@ -1,1 +1,57 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>开发工作台 | AIQA 研究站</title><meta name="description" content="为开源工具提出建议，跟进自动开发、代码审查与版本交付。"><link rel="icon" href="/assets/favicon-32.png"><link rel="stylesheet" href="/styles.css?v=20261107"><link rel="stylesheet" href="/development/workbench.css"></head><body><!--HEADER--><main id="main" class="wrap workbench"><div class="workbench-intro"><a href="/" class="back-link">首页 / 开发工作台</a><h1>从一个建议，<br>到一次改进。</h1><p>AI Proxy、App Test Agent 和 PureEval 的建议与开发进度，集中在这里。</p><p class="service-status" id="service-status" role="status">正在连接工作台…</p></div><ol class="delivery-path" aria-label="交付流程"><li>提交建议</li><li>安全审查</li><li>计划与开发</li><li>代码审查</li><li>合并与归档</li></ol><div class="workbench-layout"><section class="suggestion-panel" aria-labelledby="suggestion-title"><h2 id="suggestion-title">想改进什么？</h2><p>说清遇到了什么，以及你希望它怎样工作。请勿填写密码、密钥或私人信息。</p><form id="suggestion-form"><label for="project">开源项目</label><select name="project" id="project"><option value="ai-proxy">AI Proxy</option><option value="app-test-agent">App Test Agent</option><option value="ai-judge-agent">PureEval</option></select><label for="suggestion-name">一句话描述</label><input id="suggestion-name" name="title" minlength="4" maxlength="80" required placeholder="例如：筛选请求后，保留上一次的条件"><label for="suggestion-detail">问题与期望</label><textarea id="suggestion-detail" name="detail" rows="7" minlength="15" maxlength="2000" required placeholder="在哪里遇到了什么问题？你希望改成什么样？"></textarea><div id="challenge"></div><button id="submit-suggestion" class="button button-primary" disabled>提交建议</button><p id="submit-status" role="status" aria-live="polite"></p></form><a id="github-fallback" href="https://github.com/STEVE-DENG/ai-proxy/issues/new" target="_blank" rel="noopener noreferrer">也可以通过 GitHub 反馈 ↗</a><p class="workbench-note">建议通过安全审查后进入开发；超出范围的需求会被拒绝。自动交付不代表已通过测试。</p></section><section class="task-panel" aria-labelledby="tasks-title"><div class="task-heading"><h2 id="tasks-title">开发记录</h2><button type="button" id="refresh-tasks">刷新</button></div><div class="task-filters"><label>项目<select id="filter-project"><option value="all">全部项目</option><option value="ai-proxy">AI Proxy</option><option value="app-test-agent">App Test Agent</option><option value="ai-judge-agent">PureEval</option></select></label><label>进度<select id="filter-state"><option value="all">全部进度</option><option value="active">正在推进</option><option value="completed">已完成</option><option value="failed">未完成</option></select></label></div><p id="tasks-status" role="status"></p><p id="tracked-task" role="status"></p><div id="task-list"></div></section></div></main><!--FOOTER--><script type="module" src="/development/workbench.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>开源开发现场 | AIQA 研究站</title>
+  <meta name="description" content="跟进 AI Proxy、App Test Agent 和 PureEval 的开发、代码审查与版本交付，为开源项目提出下一条建议。">
+  <link rel="canonical" href="https://aiqaprobe.com/development/">
+  <link rel="icon" href="/assets/favicon-32.png">
+  <link rel="stylesheet" href="/styles.css?v=20261107">
+  <link rel="stylesheet" href="/development/workbench.css?v=20261107-2">
+</head>
+<body class="development-page">
+<!--HEADER-->
+<main id="main" class="studio">
+  <div class="studio-topline"><a href="/">← 返回研究站</a><span>三个项目，一个开发现场</span><a href="#suggestions">提出建议 ↗</a></div>
+  <section class="studio-hero" aria-labelledby="studio-title">
+    <div class="hero-copy">
+      <p class="studio-label"><span class="terminal-symbol" aria-hidden="true">&gt;_</span> 开源开发现场</p>
+      <h1 id="studio-title">看见想法，<br>一步步变成代码。</h1>
+      <p class="hero-description">从建议到实现，从代码审查到版本归档。<br>三个 AI-QA 开源项目，在这里持续向前。</p>
+      <div class="studio-actions"><a class="studio-primary" href="#workbench">查看开发进度 <span aria-hidden="true">↗</span></a><a class="studio-secondary" href="#suggestions">提一个好想法 <span aria-hidden="true">＋</span></a></div>
+      <div class="connection-panel"><div class="connection-title"><span class="connection-dot" id="connection-dot" aria-hidden="true"></span><p id="service-status" role="status">正在连接工作台…</p></div><p id="tasks-status">接入后每分钟同步公开进度。</p><span class="engine-label">默认执行 · Codex 6.1 sol / medium</span></div>
+    </div>
+    <div class="radar-panel">
+      <div class="panel-topline"><span><i aria-hidden="true"></i> 开发雷达</span><button id="pause-radar" type="button" aria-pressed="true">动效已暂停</button></div>
+      <div class="radar-body">
+        <div class="radar" id="radar" aria-label="任务概览，尚未连接"><div class="radar-orbit orbit-outer" aria-hidden="true"></div><div class="radar-orbit orbit-middle" aria-hidden="true"></div><div class="radar-orbit orbit-inner" aria-hidden="true"></div><div class="radar-axis" aria-hidden="true"></div><div class="radar-sweep" aria-hidden="true"></div><div id="radar-points"></div><div class="radar-core"><strong id="radar-count">—</strong><span id="radar-caption">等待连接</span></div><span class="orbit-label" aria-hidden="true">公开任务</span></div>
+        <div class="radar-readout"><p class="readout-title">此刻的工作台</p><p id="radar-message">执行服务尚未连接时，<br>这里不展示模拟任务。</p><div class="radar-legend"><span><i class="legend-active"></i>开发</span><span><i class="legend-review"></i>审查</span><span><i class="legend-done"></i>完成</span></div></div>
+      </div>
+      <div class="radar-footnote"><span class="shield-icon" aria-hidden="true">◇</span><p>建议先审查，代码再审查。<br><span>全流程使用 Codex，执行环境与个人文件隔离。</span></p></div>
+    </div>
+  </section>
+  <nav class="project-strip" aria-label="按开源项目查看"><button type="button" data-project="ai-proxy" aria-pressed="false"><span class="project-symbol" aria-hidden="true">⌁</span><span><strong>AI Proxy</strong><small>接口调查与问题复现</small></span><span aria-hidden="true">↗</span></button><button type="button" data-project="app-test-agent" aria-pressed="false"><span class="project-symbol agent-symbol" aria-hidden="true">⌘</span><span><strong>App Test Agent</strong><small>理解界面，执行任务</small></span><span aria-hidden="true">↗</span></button><button type="button" data-project="ai-judge-agent" aria-pressed="false"><span class="project-symbol judge-symbol" aria-hidden="true">✓</span><span><strong>PureEval</strong><small>评测 Agent，比较版本</small></span><span aria-hidden="true">↗</span></button></nav>
+  <section class="board-section" id="workbench" aria-labelledby="tasks-title">
+    <div class="section-title"><div><p class="section-kicker">每一步，都有记录</p><h2 id="tasks-title">正在把什么做出来？</h2></div><button class="refresh-button" type="button" id="refresh-tasks"><span aria-hidden="true">↻</span> 刷新进度</button></div>
+    <div class="board-overview" aria-label="全部公开任务概览"><div><span class="stat-label"><i class="legend-active"></i>正在开发</span><strong id="stat-active">—</strong></div><div><span class="stat-label"><i class="legend-review"></i>审查与交付</span><strong id="stat-review">—</strong></div><div><span class="stat-label"><i class="legend-done"></i>完成归档</span><strong id="stat-completed">—</strong></div><div><span class="stat-label"><i class="legend-stopped"></i>已停止 / 失败</span><strong id="stat-failed">—</strong></div></div>
+    <div class="board-toolbar"><label class="task-search"><span aria-hidden="true">⌕</span><input type="search" id="task-search" maxlength="120" placeholder="搜索任务、项目或版本…" aria-label="搜索公开任务"></label><label class="project-filter"><span class="sr-only">筛选项目</span><select id="filter-project"><option value="all">全部项目</option><option value="ai-proxy">AI Proxy</option><option value="app-test-agent">App Test Agent</option><option value="ai-judge-agent">PureEval</option></select></label></div>
+    <div class="state-toolbar"><div class="state-filters" role="group" aria-label="筛选任务状态"><button type="button" data-state="all" aria-pressed="true">全部</button><button type="button" data-state="active" aria-pressed="false">进行中</button><button type="button" data-state="completed" aria-pressed="false">已完成</button><button type="button" data-state="failed" aria-pressed="false">未完成</button></div><span id="scope-note">仅展示通过准入审查的公开任务</span></div>
+    <p class="tracked-task" id="tracked-task" role="status" hidden></p>
+    <div class="board-grid" id="task-list" aria-live="polite"><p class="loading-note">正在读取公开进度…</p></div>
+    <button class="load-more" type="button" id="load-more" hidden>显示更多记录</button>
+  </section>
+  <div class="activity-layout">
+    <section class="focus-panel" aria-labelledby="focus-title"><div class="section-title compact"><h2 id="focus-title">聚焦一项工作</h2><button id="clear-focus" type="button" hidden>清除</button></div><div id="focus-content"><span class="focus-glyph" aria-hidden="true">⌖</span><h3>你关心哪一次改进？</h3><p>点击任务卡片上的「聚焦」，在这里查看处理过程与交付链接。</p></div></section>
+    <section class="activity-panel" aria-labelledby="activity-title"><div class="section-title compact"><h2 id="activity-title">最近变化</h2><span>北京时间</span></div><ol id="recent-activity"><li class="activity-empty">有公开进展后，更新会出现在这里。</li></ol></section>
+  </div>
+  <section class="suggestion-section" id="suggestions" aria-labelledby="suggestion-title">
+    <div class="suggestion-copy"><p class="section-kicker">下一次改进，可能来自你</p><h2 id="suggestion-title">有个想法？<br>把它放进建议箱。</h2><p>遇到一个不顺手的细节，<br>或者想到了新的使用方式，都可以说说。</p><ol class="suggestion-steps"><li><strong>说清问题</strong><span>在哪个项目，遇到了什么。</span></li><li><strong>交给 Codex</strong><span>审查建议、整理方案、开发与复审。</span></li><li><strong>跟进结果</strong><span>通过任务编号，查看改动与版本。</span></li></ol><p class="suggestion-privacy">请勿填写密码、密钥或私人信息。</p></div>
+    <div class="suggestion-form-panel"><form id="suggestion-form"><div class="form-topline"><span class="form-marker" aria-hidden="true">＋</span><h3>提交一条建议</h3></div><label for="project">选择项目</label><select name="project" id="project"><option value="ai-proxy">AI Proxy</option><option value="app-test-agent">App Test Agent</option><option value="ai-judge-agent">PureEval</option></select><label for="suggestion-name">一句话说明你的想法</label><input id="suggestion-name" name="title" minlength="4" maxlength="80" required placeholder="例如：筛选请求后，保留上一次的条件"><div class="field-heading"><label for="suggestion-detail">问题与期望</label><span id="detail-length">0 / 2000</span></div><textarea id="suggestion-detail" name="detail" rows="5" minlength="15" maxlength="2000" required placeholder="现在是什么样？你希望改成什么样？如果有复现步骤，也可以写在这里。"></textarea><div id="challenge"></div><div class="form-submit-row"><button id="submit-suggestion" class="studio-primary" disabled>提交建议 <span aria-hidden="true">↗</span></button><span>审查通过后公开</span></div><p id="submit-status" role="status" aria-live="polite">正在确认建议入口状态…</p></form><a id="github-fallback" href="https://github.com/STEVE-DENG/ai-proxy/issues/new" target="_blank" rel="noopener noreferrer">也可以通过 GitHub 反馈 ↗</a></div>
+  </section>
+  <div class="studio-bottom-note"><span>建议 → 准入审查 → 计划与开发 → 独立代码审查 → 合并与归档</span><p>代码合并不等于已部署；自动交付不代表通过测试。</p></div>
+</main>
+<!--FOOTER-->
+<script type="module" src="/development/workbench.js?v=20261107-2"></script>
+</body></html>
