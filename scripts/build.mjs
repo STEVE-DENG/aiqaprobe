@@ -17,6 +17,8 @@ export async function buildSite() {
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
   await cp(path.join(root, "src"), output, { recursive: true });
+  const workbench = await readFile(path.join(root, "src/development/index.html"), "utf8");
+  await writeFile(path.join(output, "development/index.html"), workbench.replace("<!--HEADER-->", header("development")).replace("<!--FOOTER-->", footer()));
   const topicTiles = topics.map(t => `<a class="topic-tile ${t.id}" href="/notes/?topic=${t.id}"><span class="topic-glyph">${icon(t.icon)}</span><span><small>${t.en}</small><h3>${t.name}</h3><p>${t.text}</p></span><span class="tile-count">${notes.filter(n => n.topic === t.id).length} 篇 ${icon("arrow")}</span></a>`).join("");
   const featured = ["agent-evaluation-playbook", "agent-grading-explained", "agent-evaluation-frontiers-2026-10"].map(slug => notes.find(n => n.slug === slug));
   let home = await readFile(path.join(root, "src/index.html"), "utf8");
@@ -30,7 +32,7 @@ export async function buildSite() {
     await writeFile(path.join(dir, "index.html"), notePage(note, notes));
   }
   const latestAddition = notes.map(note => note.addedAt || reviewed).sort().at(-1);
-  const urls = ["/", "/notes/", ...notes.map(noteURL)];
+  const urls = ["/", "/development/", "/notes/", ...notes.map(noteURL)];
   await writeFile(path.join(output, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url => `<url><loc>${origin}${url}</loc><lastmod>${notes.find(note => noteURL(note) === url)?.addedAt || (url === "/" || url === "/notes/" ? latestAddition : reviewed)}</lastmod></url>`).join("")}</urlset>`);
   const rssDate = date => new Date(`${date}T00:00:00+08:00`).toUTCString();
   await writeFile(path.join(output, "feed.xml"), `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>AIQA 研究站 · 研究笔记</title><link>${origin}/notes/</link><description>AI 评测、客户端自动化、知识库与测试研究笔记。条目日期为本站收录日期；原始资料日期见正文。</description><language>zh-CN</language><lastBuildDate>${rssDate(latestAddition)}</lastBuildDate>${notes.map(note => `<item><title>${escape(note.title)}</title><link>${origin}${noteURL(note)}</link><guid>${origin}${noteURL(note)}</guid><pubDate>${rssDate(note.addedAt || reviewed)}</pubDate><description>${escape(note.summary)} ${escape(note.dateLabel || "来源日期")}：${note.date}。</description></item>`).join("")}</channel></rss>`);

@@ -1,0 +1,5 @@
+{
+  "name": "aiqa-development", "main": "worker.mjs", "compatibility_date": "2026-11-07",
+  "vars": {"SITE_ORIGIN":"https://aiqaprobe.com", "TURNSTILE_SITE_KEY":"", "DAILY_LIMIT":"20"},
+  "d1_databases": [{"binding":"DB", "database_name":"aiqa-development", "database_id":"REPLACE_WITH_D1_ID", "migrations_dir":"migrations"}]
+}

@@ -579,3 +579,13 @@ h2 { font-size: clamp(25px, 2.7vw, 34px); letter-spacing: -1px; font-weight: 620
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Keep the fourth navigation item readable on compact screens. */
+@media (min-width: 651px) and (max-width: 950px) {
+  .site-header nav { gap: 18px; margin-right: 0; }
+  .header-inner { gap: 16px; }
+}
+@media (max-width: 650px) {
+  .site-header nav { justify-content: space-between; gap: 10px; }
+  .site-header nav a { font-size: 16px; white-space: nowrap; }
+}

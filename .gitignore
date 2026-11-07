@@ -11,3 +11,12 @@ node_modules/
 /aiqaprobe-dns-import.csv
 /aiqaprobe-www-dns-import.csv
 /aiqaprobe-live.png
+
+# Autonomous worker credentials and private execution records.
+automation/config.json
+automation/secrets.env
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc

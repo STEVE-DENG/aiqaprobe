@@ -1,0 +1,1 @@
+{"name":"aiqa-development-api","private":true,"type":"module","scripts":{"deploy":"wrangler deploy","migrate":"wrangler d1 migrations apply aiqa-development --remote"},"devDependencies":{"wrangler":"4.158.0"}}

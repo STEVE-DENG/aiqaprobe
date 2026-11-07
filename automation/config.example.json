@@ -1,0 +1,17 @@
+{
+  "api_base": "https://YOUR-WORKER.workers.dev",
+  "docker_context": "colima-aiqa",
+  "image": "aiqa-executor:0.1.0",
+  "codex_model": "gpt-6.1-sol",
+  "reasoning_effort": "medium",
+  "poll_seconds": 60,
+  "max_task_seconds": 2400,
+  "max_model_requests": 60,
+  "max_request_bytes_total": 12000000,
+  "max_failures": 3,
+  "projects": {
+    "ai-proxy": {"repo":"STEVE-DENG/ai-proxy", "allowed":["src/", "engine/", "frontend/src/", "docs/"]},
+    "app-test-agent": {"repo":"STEVE-DENG/app-test-agent", "allowed":["src/", "frontend/src/", "docs/"]},
+    "ai-judge-agent": {"repo":"STEVE-DENG/ai-judge-agent", "allowed":["frontend/src/", "backend/", "agent-runtime/", "docs/"]}
+  }
+}
