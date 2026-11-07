@@ -260,7 +260,7 @@ try {
     if (config.accepting && config.siteKey) {
       const script = document.createElement('script');
       script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-      script.onload = () => { widget = window.turnstile.render('#challenge', { sitekey: config.siteKey, action: 'suggestion', theme: 'dark' }); enabled = true; $('submit-suggestion').disabled = false; $('submit-status').textContent = '安全审查通过后，建议将进入自动开发。'; };
+      script.onload = () => { widget = window.turnstile.render('#challenge', { sitekey: config.siteKey, action: 'suggestion', theme: 'light' }); enabled = true; $('submit-suggestion').disabled = false; $('submit-status').textContent = '安全审查通过后，建议将进入自动开发。'; };
       script.onerror = () => { $('submit-status').textContent = '人机验证加载失败，请通过 GitHub 反馈。'; };
       document.head.append(script);
     } else $('submit-status').textContent = '建议入口暂未启用，请通过 GitHub 反馈。';
